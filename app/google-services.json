@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1052336961908",
+    "project_id": "arvex-90efc",
+    "storage_bucket": "arvex-90efc.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1052336961908:android:512399bb91e3c1f3ea9421",
+        "android_client_info": {
+          "package_name": "com.example.arvex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAvX5zjOKBA4eMTwvdZQ2Hcro3cJw_UbdY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
