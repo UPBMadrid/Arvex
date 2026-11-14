@@ -1,6 +1,7 @@
 package com.example.arvex
 
-
+import android.os.Handler
+import android.os.Looper
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -13,11 +14,14 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.database
 
+
 class MainActivity : AppCompatActivity() {
+
 
     // Conexión con Firebase
     private val auth = FirebaseAuth.getInstance()
     private val db = Firebase.database.reference
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,6 +32,17 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        LoadingInstance.showLoading(this)
+
+
+        val handler = Handler(Looper.getMainLooper())
+
+
+        handler.postDelayed({
+            LoadingInstance.hideLoading()
+        }, 5000)
+
+
 
         // Enlazar las vistas del diseño
         val etNombre = findViewById<EditText>(R.id.etNombre)
@@ -37,21 +52,25 @@ class MainActivity : AppCompatActivity() {
         val btnRegistrar = findViewById<Button>(R.id.btnRegistrar)
         val tvEstado = findViewById<TextView>(R.id.tvEstado)
 
+
         // ---------- REGISTRARSE ----------
         btnRegistrar.setOnClickListener {
             val nombre = etNombre.text.toString().trim()
             val correo = etCorreo.text.toString().trim()
             val clave = etClave.text.toString()
 
+
             if (nombre.isEmpty() || correo.isEmpty() || clave.length < 6) {
                 tvEstado.text = "Llena todos los campos (clave mínimo 6)"
                 return@setOnClickListener
             }
 
+
             // 1. Crear el usuario en Authentication
             auth.createUserWithEmailAndPassword(correo, clave)
                 .addOnSuccessListener { resultado ->
                     val uid = resultado.user!!.uid
+
 
                     // 2. Guardar su perfil en Realtime Database
                     val usuario = mapOf(
@@ -71,20 +90,24 @@ class MainActivity : AppCompatActivity() {
                 }
         }
 
+
         // ---------- INGRESAR ----------
         btnIngresar.setOnClickListener {
             val correo = etCorreo.text.toString().trim()
             val clave = etClave.text.toString()
+
 
             if (correo.isEmpty() || clave.isEmpty()) {
                 tvEstado.text = "Escribe correo y contraseña"
                 return@setOnClickListener
             }
 
+
             // 1. Verificar correo y contraseña
             auth.signInWithEmailAndPassword(correo, clave)
                 .addOnSuccessListener { resultado ->
                     val uid = resultado.user!!.uid
+
 
                     // 2. Leer su nombre desde Realtime Database
                     db.child("usuarios").child(uid).child("nombre").get()
