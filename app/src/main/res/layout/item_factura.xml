@@ -18,51 +18,77 @@
 
         <TextView
             android:id="@+id/tvNumeroFactura"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Factura #001"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="#000000"/>
 
         <TextView
+            android:id="@+id/tvCufe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CUFE:"
+            android:textSize="12sp"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:id="@+id/tvNitVendedor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NIT vendedor:"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tvNitComprador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NIT comprador:"
+            android:layout_marginTop="6dp"/>
+
+        <TextView
             android:id="@+id/tvNombreCliente"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="Cliente: Juan Pérez"
-            android:textSize="15sp"/>
+            android:text="Nombre del cliente:"
+            android:layout_marginTop="6dp"/>
 
         <TextView
-            android:id="@+id/tvIdentificacion"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvFechaHoraVenta"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Identificación: 123456789"
-            android:textSize="14sp"/>
+            android:text="Fecha y hora:"
+            android:layout_marginTop="6dp"/>
 
         <TextView
-            android:id="@+id/tvFecha"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvValorSinImpuestos"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:text="Fecha: 14/11/2026"
-            android:textSize="14sp"/>
+            android:text="Valor sin impuestos:"
+            android:layout_marginTop="10dp"/>
 
         <TextView
-            android:id="@+id/tvTotal"
-            android:layout_width="wrap_content"
+            android:id="@+id/tvValorConImpuestos"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Total: $250.000"
+            android:text="Valor con impuestos:"
+            android:textStyle="bold"
             android:textSize="17sp"
-            android:textStyle="bold"/>
+            android:layout_marginTop="6dp"/>
+
+        <TextView
+            android:id="@+id/tvMedioPago"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Medio de pago:"
+            android:layout_marginTop="6dp"/>
 
         <Button
             android:id="@+id/btnVerFactura"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="14dp"
             android:text="Ver factura completa"/>
 
     </LinearLayout>
