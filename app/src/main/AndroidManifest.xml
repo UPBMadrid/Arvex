@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Arvex">
         <activity
-            android:name=".RegistroFacturasActivity"
+            android:name=".Facturas_firebase"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
