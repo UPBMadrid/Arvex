@@ -69,6 +69,13 @@
             android:layout_marginTop="10dp"/>
 
         <TextView
+            android:id="@+id/tvIVA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Valor añadido por el IVA:"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
             android:id="@+id/tvValorConImpuestos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
