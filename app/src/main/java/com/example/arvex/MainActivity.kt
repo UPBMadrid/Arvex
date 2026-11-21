@@ -129,6 +129,11 @@ class MainActivity : AppCompatActivity() {
 
         val btnGuardarProducto =
             findViewById<Button>(R.id.btnGuardarProducto)
+        btnGuardarProducto.setOnClickListener {
+            val intent = Intent(this, RegistroProductoActivity::class.java)
+            startActivity(intent)
+        }
+
 
         val btnConsultarProductos =
             findViewById<Button>(R.id.btnConsultarProductos)
