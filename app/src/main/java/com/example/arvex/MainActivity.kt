@@ -17,10 +17,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Mostrar pantalla de inicio de sesión
+        // Mostrar inicio de sesión
         setContentView(R.layout.activity_main)
 
-        // Enlazar los campos del inicio de sesión
+        // Enlazar los campos
         val etNombre = findViewById<EditText>(R.id.etNombre)
         val etCorreo = findViewById<EditText>(R.id.etCorreo)
         val etClave = findViewById<EditText>(R.id.etClave)
@@ -69,36 +69,48 @@ class MainActivity : AppCompatActivity() {
         btnIngresar.setOnClickListener {
 
             val correo = etCorreo.text.toString().trim()
-            val clave = etClave.text.toString()
+            val clave = etClave.text.toString().trim()
 
             if (correo.isEmpty() || clave.isEmpty()) {
-                tvEstado.text = "Escribe tu correo y contraseña."
+                tvEstado.text = "Completa todos los campos"
                 return@setOnClickListener
             }
+
+            // Mostrar pantalla de carga
+            LoadingInstance.showLoading(this)
 
             auth.signInWithEmailAndPassword(correo, clave)
                 .addOnSuccessListener { resultado ->
 
-                    val uid = resultado.user!!.uid
+                    val uid = resultado.user?.uid
 
-                    db.child("usuarios").child(uid).child("nombre").get()
-                        .addOnSuccessListener { dato ->
+                    if (uid != null) {
 
-                            val nombre = dato.getValue(String::class.java)
-                            mostrarMenu()
+                        db.child("usuarios").child(uid).child("nombre")
+                            .get()
+                            .addOnSuccessListener { snapshot ->
 
-                        }
-                        .addOnFailureListener {
-                            // Si no se puede leer el nombre,
-                            // igualmente se permite entrar.
-                            mostrarMenu()
-                        }
+                                val nombre = snapshot.getValue(String::class.java) ?: "Usuario"
+
+                                LoadingInstance.hideLoading()
+                                mostrarMenu()
+                            }
+                            .addOnFailureListener { error ->
+                                LoadingInstance.hideLoading()
+                                tvEstado.text = "Error al obtener usuario: ${error.message}"
+                            }
+
+                    } else {
+                        LoadingInstance.hideLoading()
+                        tvEstado.text = "No se pudo identificar al usuario"
+                    }
                 }
                 .addOnFailureListener { error ->
+                    LoadingInstance.hideLoading()
                     tvEstado.text = "Error al iniciar sesión: ${error.message}"
                 }
         }
-    }
+    } // Aquí termina onCreate()
 
     // MOSTRAR MENÚ PRINCIPAL
     private fun mostrarMenu() {
