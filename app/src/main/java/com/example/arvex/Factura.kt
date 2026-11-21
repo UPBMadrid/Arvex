@@ -6,6 +6,7 @@ data class Factura(
     val nitComprador: String = "",
     val fecha: String = "",
     val valorSinImpuestos: Double = 0.0,
+    val valorConImpuestos: Double = 0.0,
     val medioPago: String = "",
     val cufe: String = ""
 )

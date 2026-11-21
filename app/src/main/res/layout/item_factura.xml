@@ -48,13 +48,6 @@
             android:layout_marginTop="6dp"/>
 
         <TextView
-            android:id="@+id/tvNombreCliente"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nombre del cliente:"
-            android:layout_marginTop="6dp"/>
-
-        <TextView
             android:id="@+id/tvFechaHoraVenta"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
