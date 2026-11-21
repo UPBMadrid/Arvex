@@ -65,6 +65,7 @@ class Facturas_firebase : AppCompatActivity() {
                 "nitComprador" to nitC,
                 "fecha" to fecha,
                 "valorSinImpuestos" to valor,
+                "valorIVA" to iva,
                 "valorConImpuestos" to valorTotal,
                 "medioPago" to medioP,
                 "cufe" to cufe

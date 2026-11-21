@@ -36,6 +36,7 @@ class FacturaAdapter(
         val tvValorSinImpuestos: TextView =
             itemView.findViewById(R.id.tvValorSinImpuestos)
 
+        val tvIVA: TextView = itemView.findViewById(R.id.tvIVA)
         val tvValorConImpuestos: TextView =
             itemView.findViewById(R.id.tvValorConImpuestos)
 
@@ -85,10 +86,10 @@ class FacturaAdapter(
 
         holder.tvValorSinImpuestos.text =
             "Valor sin impuestos: ${formatoMoneda.format(factura.valorSinImpuestos)}"
-
+        holder.tvIVA.text =
+            "IVA: ${formatoMoneda.format(factura.valorIVA)}"
         holder.tvValorConImpuestos.text =
             "Valor con impuestos: ${formatoMoneda.format(factura.valorConImpuestos)}"
-
         holder.tvMedioPago.text =
             "Medio de pago: ${factura.medioPago}"
 
@@ -107,7 +108,7 @@ class FacturaAdapter(
                 Medio de pago: ${factura.medioPago}
                 
                 Valor sin impuestos: ${formatoMoneda.format(factura.valorSinImpuestos)}
-                
+                IVA (19%): ${'$'}{formatoMoneda.format(factura.valorIVA)}
                 TOTAL: ${formatoMoneda.format(factura.valorConImpuestos)}
                 """.trimIndent()
 
