@@ -91,6 +91,14 @@
             android:layout_marginTop="14dp"
             android:text="Ver factura completa"/>
 
+        <Button
+            android:id="@+id/btnEliminarFactura"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:backgroundTint="#CC0000"
+            android:text="Eliminar factura"/>
+
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

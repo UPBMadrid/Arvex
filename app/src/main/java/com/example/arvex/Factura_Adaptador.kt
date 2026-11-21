@@ -8,6 +8,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import java.text.NumberFormat
 import java.util.Locale
+import com.google.firebase.Firebase
+import com.google.firebase.database.database
 
 class FacturaAdapter(
     private val listaFacturas: MutableList<Factura>
@@ -42,6 +44,7 @@ class FacturaAdapter(
 
         val btnVerFactura: Button =
             itemView.findViewById(R.id.btnVerFactura)
+        val btnEliminarFactura: Button = itemView.findViewById(R.id.btnEliminarFactura)
     }
 
     override fun onCreateViewHolder(
@@ -113,6 +116,9 @@ class FacturaAdapter(
                 .setMessage(detalle)
                 .setPositiveButton("Cerrar", null)
                 .show()
+        }
+        holder.btnEliminarFactura.setOnClickListener {
+            Firebase.database.reference.child("facturas").child(factura.id).removeValue()
         }
     }
 
