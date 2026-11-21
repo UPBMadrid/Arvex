@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import java.text.NumberFormat
 import java.util.Locale
@@ -12,6 +13,9 @@ import java.util.Locale
 class FacturaAdapter(
     private val listaFacturas: MutableList<Factura>
 ) : RecyclerView.Adapter<FacturaAdapter.FacturaViewHolder>() {
+
+    private val formatoMoneda =
+        NumberFormat.getCurrencyInstance(Locale("es", "CO"))
 
     class FacturaViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
@@ -62,14 +66,11 @@ class FacturaAdapter(
 
         val factura = listaFacturas[position]
 
-        val formatoMoneda = NumberFormat.getCurrencyInstance(
-            Locale("es", "CO")
-        )
-
         holder.tvNumeroFactura.text =
-            "Factura #${factura.id.takeLast(6)}"
+            "Factura: ${factura.id}"
 
-        holder.tvCufe.text = "CUFE: ${factura.cufe}"
+        holder.tvCufe.text =
+            "CUFE: ${factura.cufe}"
 
         holder.tvNitVendedor.text =
             "NIT vendedor: ${factura.nitVendedor}"
@@ -78,41 +79,19 @@ class FacturaAdapter(
             "NIT comprador: ${factura.nitComprador}"
 
         holder.tvFechaHoraVenta.text =
-            "Fecha y hora: ${factura.fecha}"
+            "Fecha: ${factura.fecha}"
 
         holder.tvValorSinImpuestos.text =
-            "Valor sin impuestos: ${formatoMoneda.format(factura.valorSinImpuestos)}"
+            "Subtotal: ${formatoMoneda.format(factura.valorSinImpuestos)}"
 
         holder.tvValorConImpuestos.text =
-            "Valor con impuestos: ${formatoMoneda.format(factura.valorConImpuestos)}"
+            "Total: ${formatoMoneda.format(factura.valorConImpuestos)}"
 
         holder.tvMedioPago.text =
             "Medio de pago: ${factura.medioPago}"
 
         holder.btnVerFactura.setOnClickListener {
-
-            val contexto = holder.itemView.context
-
-            val detalle =
-                """
-                CUFE: ${factura.cufe}
-                
-                NIT vendedor: ${factura.nitVendedor}
-                NIT comprador: ${factura.nitComprador}
-                
-                Fecha: ${factura.fecha}
-                Medio de pago: ${factura.medioPago}
-                
-                Valor sin impuestos: ${formatoMoneda.format(factura.valorSinImpuestos)}
-                
-                TOTAL: ${formatoMoneda.format(factura.valorConImpuestos)}
-                """.trimIndent()
-
-            android.app.AlertDialog.Builder(contexto)
-                .setTitle("Factura ${factura.id.takeLast(6)}")
-                .setMessage(detalle)
-                .setPositiveButton("Cerrar", null)
-                .show()
+            mostrarDetalleFactura(holder.itemView, factura)
         }
     }
 
@@ -124,5 +103,67 @@ class FacturaAdapter(
         listaFacturas.clear()
         listaFacturas.addAll(nuevasFacturas)
         notifyDataSetChanged()
+    }
+
+    private fun mostrarDetalleFactura(
+        vista: View,
+        factura: Factura
+    ) {
+
+        val contexto = vista.context
+
+        val detalle = StringBuilder()
+
+        detalle.append("Factura: ${factura.id}\n\n")
+        detalle.append("Productos:\n\n")
+
+        if (factura.productos.isEmpty()) {
+
+            detalle.append("No hay productos registrados.\n")
+
+        } else {
+
+            for (producto in factura.productos.values) {
+
+                detalle.append("Producto: ${producto.nombre}\n")
+                detalle.append(
+                    "Precio unitario: ${
+                        formatoMoneda.format(producto.precioUnitario)
+                    }\n"
+                )
+                detalle.append("Cantidad: ${producto.cantidad}\n")
+                detalle.append(
+                    "Subtotal: ${
+                        formatoMoneda.format(producto.subtotal)
+                    }\n\n"
+                )
+            }
+        }
+
+        val iva = factura.valorConImpuestos -
+                factura.valorSinImpuestos
+
+        detalle.append("--------------------------\n")
+        detalle.append(
+            "Subtotal: ${
+                formatoMoneda.format(factura.valorSinImpuestos)
+            }\n"
+        )
+        detalle.append(
+            "IVA (19%): ${formatoMoneda.format(iva)}\n"
+        )
+        detalle.append(
+            "Total: ${
+                formatoMoneda.format(factura.valorConImpuestos)
+            }\n\n"
+        )
+        detalle.append("Medio de pago: ${factura.medioPago}\n")
+        detalle.append("CUFE: ${factura.cufe}")
+
+        AlertDialog.Builder(contexto)
+            .setTitle("Detalle de la factura")
+            .setMessage(detalle.toString())
+            .setPositiveButton("Cerrar", null)
+            .show()
     }
 }
