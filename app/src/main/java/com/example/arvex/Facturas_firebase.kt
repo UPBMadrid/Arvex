@@ -124,6 +124,7 @@ class Facturas_firebase : AppCompatActivity() {
                 "nitVendedor" to nitV,
                 "nitComprador" to nitC,
                 "fecha" to fecha,
+                "valorIVA" to iva,
                 "productos" to productosFactura,
                 "valorSinImpuestos" to subtotal,
                 "valorConImpuestos" to valorTotal,

@@ -119,10 +119,13 @@ class MainActivity : AppCompatActivity() {
 
         val btnRegistrarFactura =
             findViewById<Button>(R.id.btnRegistrarFactura)
-
+        btnRegistrarFactura.setOnClickListener {
+            val intent = Intent(this, Facturas_firebase::class.java)
+            startActivity(intent)
+        }
         val btnRegistroFacturas =
             findViewById<Button>(R.id.btnRegistroFacturas)
-            btnRegistroFacturas.setOnClickListener {
+        btnRegistroFacturas.setOnClickListener {
             val intent = Intent(this, RegistroFacturasActivity::class.java)
             startActivity(intent)
         }
@@ -134,16 +137,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-
         val btnConsultarProductos =
             findViewById<Button>(R.id.btnConsultarProductos)
-
-        // Abrir formulario de facturas
-        btnRegistrarFactura.setOnClickListener {
-            val intent = Intent(this, Facturas_firebase::class.java)
+        btnConsultarProductos.setOnClickListener {
+            val intent = Intent(this, productos_registro::class.java)
             startActivity(intent)
         }
-
-        // Los otros tres botones se conectarán posteriormente.
     }
 }

@@ -15,6 +15,7 @@ data class Factura(
     val fecha: String = "",
     val productos: Map<String, DetalleProductoFactura> = emptyMap(),
     val valorSinImpuestos: Double = 0.0,
+    val valorIVA: Double = 0.0,
     val valorConImpuestos: Double = 0.0,
     val medioPago: String = "",
     val cufe: String = ""

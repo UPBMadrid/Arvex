@@ -9,6 +9,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import java.text.NumberFormat
 import java.util.Locale
+import com.google.firebase.Firebase
+import com.google.firebase.database.database
 
 class FacturaAdapter(
     private val listaFacturas: MutableList<Factura>
@@ -38,6 +40,7 @@ class FacturaAdapter(
         val tvValorSinImpuestos: TextView =
             itemView.findViewById(R.id.tvValorSinImpuestos)
 
+        val tvIVA: TextView = itemView.findViewById(R.id.tvIVA)
         val tvValorConImpuestos: TextView =
             itemView.findViewById(R.id.tvValorConImpuestos)
 
@@ -46,6 +49,7 @@ class FacturaAdapter(
 
         val btnVerFactura: Button =
             itemView.findViewById(R.id.btnVerFactura)
+        val btnEliminarFactura: Button = itemView.findViewById(R.id.btnEliminarFactura)
     }
 
     override fun onCreateViewHolder(
@@ -92,6 +96,9 @@ class FacturaAdapter(
 
         holder.btnVerFactura.setOnClickListener {
             mostrarDetalleFactura(holder.itemView, factura)
+        }
+        holder.btnEliminarFactura.setOnClickListener {
+            Firebase.database.reference.child("facturas").child(factura.id).removeValue()
         }
     }
 
