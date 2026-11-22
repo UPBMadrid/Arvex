@@ -1,5 +1,6 @@
 package com.example.arvex
 
+import android.widget.Button
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -33,6 +34,11 @@ class RegistroFacturasActivity : AppCompatActivity() {
         rvFacturas.adapter = adapter
 
         cargarFacturas()
+        val btnVolverMenu = findViewById<Button>(R.id.btnVolverMenu)
+
+        btnVolverMenu.setOnClickListener {
+            finish()
+        }
     }
 
     private fun cargarFacturas() {

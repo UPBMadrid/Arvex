@@ -1,3 +1,4 @@
+
 package com.example.arvex
 
 import android.os.Bundle
@@ -24,6 +25,7 @@ class RegistroProductoActivity : AppCompatActivity() {
         val btnVolver = findViewById<Button>(R.id.btnVolverMenu)
 
         val tvEstado = findViewById<TextView>(R.id.tvEstadoProducto)
+
 
         btnGuardar.setOnClickListener {
 
@@ -58,7 +60,6 @@ class RegistroProductoActivity : AppCompatActivity() {
 
             db.child("productos").child(productoId).setValue(producto)
                 .addOnSuccessListener {
-
                     tvEstado.text = "Producto registrado correctamente"
 
                     etNombre.text.clear()
