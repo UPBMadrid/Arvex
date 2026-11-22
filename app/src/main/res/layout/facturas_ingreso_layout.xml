@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F4F6FA"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrar factura"
+            android:textColor="#172554"
+            android:textSize="27sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"/>
+
+        <EditText
+            android:id="@+id/etNITV"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:hint="NIT del vendedor"
+            android:inputType="text"
+            android:backgroundTint="#64748B"/>
+
+        <EditText
+            android:id="@+id/etNITC"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:hint="NIT del comprador"
+            android:inputType="text"
+            android:backgroundTint="#64748B"/>
+
+        <EditText
+            android:id="@+id/etFecha"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:hint="Fecha de la venta"
+            android:inputType="datetime"
+            android:backgroundTint="#64748B"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Productos disponibles"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#172554"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Selecciona los productos e indica las cantidades."
+            android:textColor="#64748B"
+            android:textSize="14sp"
+            android:layout_marginBottom="10dp"/>
+
+        <!-- Aquí aparecerán los productos de Firebase -->
+        <LinearLayout
+            android:id="@+id/llProductos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Resumen de la factura"
+            android:textColor="#172554"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="12dp"/>
+
+        <TextView
+            android:id="@+id/tvSubtotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Subtotal: $0"
+            android:textSize="16sp"
+            android:textColor="#334155"
+            android:padding="6dp"/>
+
+        <TextView
+            android:id="@+id/tvIVA"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="IVA (19%): $0"
+            android:textSize="16sp"
+            android:textColor="#334155"
+            android:padding="6dp"/>
+
+        <TextView
+            android:id="@+id/tvTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total: $0"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#1D4ED8"
+            android:padding="6dp"/>
+
+        <EditText
+            android:id="@+id/etMedioP"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:hint="Medio de pago"
+            android:inputType="textCapSentences"
+            android:backgroundTint="#64748B"
+            android:layout_marginTop="20dp"/>
+
+        <EditText
+            android:id="@+id/etCUFE"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:hint="Código Único de Factura Electrónica"
+            android:inputType="text"
+            android:backgroundTint="#64748B"/>
+
+        <Button
+            android:id="@+id/btnIntroducir"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Guardar factura"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:backgroundTint="#1D4ED8"
+            android:layout_marginTop="20dp"/>
+
+        <Button
+            android:id="@+id/btnMenu"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:text="Volver al menú"
+            android:textAllCaps="false"
+            android:backgroundTint="#475569"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tvEstado2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="16dp"/>
+
+    </LinearLayout>
+</ScrollView>
